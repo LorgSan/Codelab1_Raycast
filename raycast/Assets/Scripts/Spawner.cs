@@ -13,6 +13,11 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //here we just instantiate amount of objects consisting of different object from the resources folder, which are getting
+        // remembered in a interctables array in the beginning. they are chosen and placed on the scene randomly
+        //but within a specific range (see UtilScript)
+
         interactables = Resources.LoadAll("", typeof(Object));
 
         for(int i = 0; i < amount; i++)
@@ -23,7 +28,7 @@ public class Spawner : MonoBehaviour
             Vector3 newPos = UtilScript.RandomizeVector(min, max);
             GameObject interactable = Instantiate(interactables[index] as GameObject, newPos, Quaternion.identity);
             interactable.transform.parent = transform;
-            //currentLine = Instantiate(Resources.Load("Line") as GameObject, Vector3.zero, Quaternion.identity);
+
         }
     }
 
