@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour //I used tutorial for this thing, 
     [SerializeField] bool lockCursor = true; //no cursor bool
 
     float cameraPitch = 0.0f; //rotation of the transverse axis
+    float velocityY = 0.0f;
     CharacterController controller = null; //we use the character controller component to simplify the Move function 
 
     Vector2 currentDir = Vector2.zero; //direction  of the camera
@@ -58,7 +59,12 @@ public class PlayerController : MonoBehaviour //I used tutorial for this thing, 
         targetDir.Normalize(); //normalize it! cause we normalize vectors so they aren't too long
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime); //smoothing it our
-		
+
+        if(controller.isGrounded) //if the object was dragged to the ground
+            velocityY = 0.0f; //we set the velocity to zero so we would stay on the ground
+
+        velocityY += gravity * Time.deltaTime; //if it's not we are getting dragged to the ground depending on the gravity scale
+
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY; //creating velocity based of all current modifiers
 
         controller.Move(velocity * Time.deltaTime); //actually move it with the controller component

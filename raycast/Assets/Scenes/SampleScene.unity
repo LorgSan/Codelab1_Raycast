@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 358980280}
   crosshair: {fileID: 11034573}
+  ChosenMaterial: {fileID: 2100000, guid: ef18c98a48a2ce442910b6c596beb42a, type: 2}
 --- !u!114 &255171928
 MonoBehaviour:
   m_ObjectHideFlags: 0
